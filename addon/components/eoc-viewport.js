@@ -44,5 +44,19 @@ export default Ember.Component.extend({
 
   collapseOffCanvas: function () {
     this.set('active', false);
-  }
+  },
+
+_initialize: Ember.on('init', function(){
+    this.EventBus.subscribe('toggleOffCanvas', this, 'toggleOffCanvas');
+    this.EventBus.subscribe('expandOffCanvas', this, 'expandOffCanvas');
+    this.EventBus.subscribe('collapseOffCanvas', this, 'collapseOffCanvas');
+  }),
+
+
+  _teardown: Ember.on('willDestroyElement', function(){
+    this.get('EventBus').unsubscribe('toggleOffCanvas');
+    this.get('EventBus').unsubscribe('expandOffCanvas');
+    this.get('EventBus').unsubscribe('collapseOffCanvas');
+  })
+  
 });

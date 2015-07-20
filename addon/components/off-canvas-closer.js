@@ -24,7 +24,8 @@ export default Ember.Component.extend({
   classNames: ['off-canvas-opener-closer'],
 
   click: function (evt) {
-    Ember.$(evt.target).trigger('collapseOffCanvas');
+    //~ Ember.$(evt.target).trigger('collapseOffCanvas');
+    this.EventBus.publish('collapseOffCanvas');
     return false;
   }
 });

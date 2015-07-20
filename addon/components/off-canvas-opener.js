@@ -11,7 +11,7 @@ import Ember from 'ember';
 
   @extends Ember.Component
 */
-export default Ember.Component.extend({
+export default Ember.Component.extend(Ember.TargetActionSupport, {
   /**
     The type of element to render this view into. By default, samples will appear
     as `<off-canvas-opener/>` elements.
@@ -34,7 +34,9 @@ export default Ember.Component.extend({
     } else {
       eventName = 'expandOffCanvas';
     }
-    Ember.$(evt.target).trigger(eventName);
+//    Ember.$(evt.target).trigger(eventName);
+    //use-event-bus
+    this.EventBus.publish(eventName);
     return false;
   }
 });
